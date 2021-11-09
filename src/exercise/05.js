@@ -37,12 +37,19 @@ const largeBox = (
   </div>
 )
 
+function Box({className, style}) {
+  return <div className={`box ${className}`} style={style}></div>
+}
+
 function App() {
   return (
     <div>
       {smallBox}
       {mediumBox}
       {largeBox}
+      <Box className="box--small" style={{backgroundColor: 'lightblue'}}>
+        small lightblue box
+      </Box>
     </div>
   )
 }
