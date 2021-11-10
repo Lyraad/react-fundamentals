@@ -6,16 +6,20 @@ import {useRef, useState} from 'react'
 
 function UsernameForm({onSubmitUsername}) {
   const inputBox = useRef(null)
+  // const [myErr, updateMyErr] = useState(null)
+  const [myValue, updateMyVal] = useState('')
 
   function handleSubmit(e) {
     e.preventDefault()
-    let inputString = inputBox.current.value
-    onSubmitUsername(inputString)
+    // let input = inputBox.current.value
+    // onSubmitUsername(input)
   }
 
   function handleChange(e) {
-    let inputString = inputBox.current.value
-    console.log(inputString)
+    let inputString = e.target.value
+    updateMyVal(inputString.toLowerCase())
+    // let errState = inputString !== inputString.toLowerCase()
+    // updateMyErr(errState ? 'Username invlaid (lower case only)' : null)
   }
 
   return (
@@ -24,12 +28,15 @@ function UsernameForm({onSubmitUsername}) {
         <label>Username:</label>
         <input
           ref={inputBox}
-          onInput={handleChange}
+          onChange={handleChange}
           id="userInput"
           type="text"
+          value={myValue}
         />
       </div>
+      {/* <button disabled={Boolean(myErr)} type="submit"> */}
       <button type="submit">Submit</button>
+      {/* <div>{myErr}</div> */}
     </form>
   )
 }
